@@ -68,3 +68,9 @@ $RECYCLE.BIN/
 # IDE files
 *.iml
 .idea/
+
+# Maven
+# =========================
+
+# Target files
+target/
