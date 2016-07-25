@@ -1,0 +1,6 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+author: Final Child
+website: ${project.url}
+main: net.epicpla.keyapi.KeyAPI
