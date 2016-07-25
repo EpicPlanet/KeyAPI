@@ -24,23 +24,11 @@
 
 package net.epicpla.keyapi;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import net.epicpla.keyapi.listener.KeyListener;
-import org.bukkit.plugin.java.JavaPlugin;
-
-public class KeyAPI extends JavaPlugin {
-
-    public ProtocolManager protocolManager;
-
-    @Override
-    public void onEnable() {
-        protocolManager = ProtocolLibrary.getProtocolManager();
-
-        KeyListener listener = new KeyListener(this, PacketType.Play.Client.CLIENT_COMMAND);
-        getServer().getPluginManager().registerEvents(listener, this);
-        protocolManager.addPacketListener(listener);
-    }
-
+/**
+ * Represents keys which can be detected.
+ */
+public enum Key {
+    DROP,
+    INVENTORY,
+    SWAPHANDS;
 }

@@ -22,25 +22,59 @@
  * THE SOFTWARE.
  */
 
-package net.epicpla.keyapi;
+package net.epicpla.keyapi.event;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import net.epicpla.keyapi.listener.KeyListener;
-import org.bukkit.plugin.java.JavaPlugin;
+import net.epicpla.keyapi.Key;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.player.PlayerEvent;
 
-public class KeyAPI extends JavaPlugin {
+/**
+ * Represents a player press key event
+ */
+public class PlayerPressKeyEvent extends PlayerEvent implements Cancellable {
+    private static final HandlerList handlers = new HandlerList();
+    private final Key key;
+    private boolean isCancelled = false;
 
-    public ProtocolManager protocolManager;
+    /**
+     * Construct a new PlayerPressKey event
+     *
+     * @param player The player instance
+     * @param key The key pressed
+     */
+    public PlayerPressKeyEvent(final Player player, final Key key) {
+        super(player);
 
-    @Override
-    public void onEnable() {
-        protocolManager = ProtocolLibrary.getProtocolManager();
-
-        KeyListener listener = new KeyListener(this, PacketType.Play.Client.CLIENT_COMMAND);
-        getServer().getPluginManager().registerEvents(listener, this);
-        protocolManager.addPacketListener(listener);
+        this.key = key;
     }
 
+    /**
+     * Get the key pressed
+     *
+     * @return the key
+     */
+    public Key getKey() {
+        return key;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return this.isCancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+        this.isCancelled = cancel;
+    }
+
+    @Override
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 }
