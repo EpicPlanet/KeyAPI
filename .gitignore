@@ -61,3 +61,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# IntelliJ IDEA
+# =========================
+
+# IDE files
+*.iml
+.idea/
