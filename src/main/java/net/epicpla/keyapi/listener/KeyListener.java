@@ -67,6 +67,7 @@ public class KeyListener extends PacketAdapter implements Listener {
 
                 if (myEvent.isCancelled()) {
                     event.setCancelled(true);
+                    event.getPlayer().closeInventory();
                 }
             }
         }

@@ -4,3 +4,4 @@ description: ${project.description}
 author: Final Child
 website: ${project.url}
 main: net.epicpla.keyapi.KeyAPI
+depend: [ProtocolLib]
