@@ -31,7 +31,11 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 
 /**
- * Represents a player press key event
+ * Represents a player press key event.
+ * If the event is cancelled, the vanilla behavior caused by the key press will be cancelled.
+ *
+ * @author Final Child
+ * @since 1.0
  */
 public class PlayerPressKeyEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

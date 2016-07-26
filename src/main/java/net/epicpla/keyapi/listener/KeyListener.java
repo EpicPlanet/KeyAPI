@@ -32,12 +32,16 @@ import com.comphenix.protocol.wrappers.EnumWrappers;
 import net.epicpla.keyapi.Key;
 import net.epicpla.keyapi.event.PlayerPressKeyEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.spigotmc.event.entity.EntityDismountEvent;
 
 public class KeyListener extends PacketAdapter implements Listener {
 
@@ -82,5 +86,39 @@ public class KeyListener extends PacketAdapter implements Listener {
             event.setCancelled(true);
         }
     }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
+        PlayerPressKeyEvent myEvent;
+        if (event.isSneaking()) {
+            myEvent = new PlayerPressKeyEvent(event.getPlayer(), Key.SNEAK);
+        } else {
+            myEvent = new PlayerPressKeyEvent(event.getPlayer(), Key.SNEAK_OFF);
+        }
+        Bukkit.getServer().getPluginManager().callEvent(myEvent);
+
+        if (myEvent.isCancelled()) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onEntityDismount(EntityDismountEvent event) {
+        if (event.getEntity() instanceof Player) {
+            PlayerPressKeyEvent myEvent = new PlayerPressKeyEvent((Player) event.getEntity(), Key.DISMOUNT);
+            Bukkit.getServer().getPluginManager().callEvent(myEvent);
+
+            if (myEvent.isCancelled()) {
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        event.getDismounted().setPassenger(event.getEntity());
+                    }
+                }.runTaskLater(getPlugin(), 0);
+
+            }
+        }
+    }
+
 
 }

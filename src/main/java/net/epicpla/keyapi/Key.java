@@ -26,9 +26,46 @@ package net.epicpla.keyapi;
 
 /**
  * Represents keys which can be detected.
+ *
+ * @author Final Child
+ * @since 1.0
  */
 public enum Key {
+
+    /**
+     * Drop Selected Item (Default: Q)
+     * Cannot be detected if there is no item in the player's main hand.
+     */
     DROP,
+
+    /**
+     * Open/Close Inventory (Default: E)
+     * Even if the event is cancelled, the player may see the inventory for a short moment.
+     */
     INVENTORY,
-    SWAPHANDS;
+
+    /**
+     * Swap Item In Hands (Default: F)
+     * Can be detected even if there is no item in the player's both hands.
+     */
+    SWAPHANDS,
+
+    /**
+     * Sneak (Default: LSHIFT)
+     * Even if the event is cancelled, the client can sneak.
+     * However the server will not consider the player sneaking, and other players will not see the player is sneaking. Vice versa.
+     * Force-place(SNEAK+USE) will be changed to normal USE if sneaking is cancelled and the client keeps sneaking. Vice versa.
+     * Dismounting will not be considered sneaking. But normally the player keeps pressing LSHIFT for a short moment after dismounting, which is considered sneaking.
+     */
+    SNEAK,
+    SNEAK_OFF,
+
+    /**
+     * Dismount (Default: LSHIFT)
+     * If the event is cancelled, the player will return to where it belongs.
+     * This is currently somewhat buggy.
+     */
+    DISMOUNT;
+
+
 }
