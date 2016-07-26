@@ -66,8 +66,8 @@ public class KeyListener extends PacketAdapter implements Listener {
                 Bukkit.getServer().getPluginManager().callEvent(myEvent);
 
                 if (myEvent.isCancelled()) {
-                    event.setCancelled(true);
                     event.getPlayer().closeInventory();
+                    event.setCancelled(true);
                 }
             }
         }
