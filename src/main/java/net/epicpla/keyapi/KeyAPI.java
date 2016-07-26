@@ -38,7 +38,7 @@ public class KeyAPI extends JavaPlugin {
     public void onEnable() {
         protocolManager = ProtocolLibrary.getProtocolManager();
 
-        KeyListener listener = new KeyListener(this, PacketType.Play.Client.CLIENT_COMMAND);
+        KeyListener listener = new KeyListener(this, PacketType.Play.Client.CLIENT_COMMAND, PacketType.Play.Client.ENTITY_ACTION, PacketType.Play.Client.STEER_VEHICLE);
         getServer().getPluginManager().registerEvents(listener, this);
         protocolManager.addPacketListener(listener);
     }

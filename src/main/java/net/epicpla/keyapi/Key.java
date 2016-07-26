@@ -62,8 +62,6 @@ public enum Key {
 
     /**
      * Dismount (Default: LSHIFT)
-     * If the event is cancelled, the player will return to where it belongs.
-     * This is currently somewhat buggy.
      */
     DISMOUNT;
 
