@@ -30,7 +30,7 @@
 
     <groupId>net.epicpla</groupId>
     <artifactId>keyapi</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>KeyAPI</name>
@@ -75,6 +75,19 @@
         <system>GitHub</system>
         <url>https://github.com/finalchild/KeyAPI/issues</url>
     </issueManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>epic-repo</id>
+            <name>Epic Repository</name>
+            <url>http://peulia.iptime.org:8081/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>epic-repo</id>
+            <name>Epic Repository</name>
+            <url>http://peulia.iptime.org:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
